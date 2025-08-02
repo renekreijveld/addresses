@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" method="upgrade">
+    <name>com_addresses</name>
+    <creationDate>2025-07-28</creationDate>
+    <copyright>Copyright (C) 2025. All rights reserved.</copyright>
+    <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+    <author>René Kreijveld</author>
+    <authorEmail>email@renekreijveld.nl</authorEmail>
+    <authorUrl>https://renekreijveld.nl</authorUrl>
+    <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+    <version>1.0.0</version>
+    <description></description>
+    <namespace path="src">Joomla\Component\Addresses</namespace>
+
+    <!-- Runs on install -->
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+
+    <!-- Runs on uninstall -->
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+
+    <files folder="site">
+        <folder>assets</folder>
+        <folder>language</folder>
+        <folder>src</folder>
+        <folder>tmpl</folder>
+    </files>
+    <administration>
+        <menu>COM_ADDRESSES</menu>
+        <submenu>
+            <menu link="option=com_addresses&amp;view=addresses" view="addresses" img="components/com_addresses/assets/images/view-16x16-addresses.png" alt="Addresses/Addresses">COM_ADDRESSES_TITLE_ADDRESSES</menu>
+        </submenu>
+        <files folder="administrator">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <folder>assets</folder>
+            <folder>forms</folder>
+            <folder>language</folder>
+            <folder>services</folder>
+            <folder>sql</folder>
+            <folder>src</folder>
+            <folder>tmpl</folder>
+        </files>
+    </administration>
+</extension>

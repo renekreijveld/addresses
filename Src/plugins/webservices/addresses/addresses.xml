@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="plugin" group="webservices" method="upgrade">
+	<name>PLG_WEBSERVICES_ADDRESSES</name>
+	<author>René Kreijveld</author>
+	<authorEmail>email@renekreijveld.nl</authorEmail>
+	<authorUrl>https://www.renekreijveld.nl</authorUrl>
+	<creationDate>july 27th, 2025</creationDate>
+	<copyright>Copyright © 2025 René Kreijveld Webdevelopment All rights reserved.</copyright>
+	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+	<version>1.0.0</version>
+	<description>PLG_WEBSERVICES_ADDRESSES_XML_DESCRIPTION</description>
+	<blockChildUninstall>true</blockChildUninstall>
+	<namespace path="src">Joomla\Plugin\WebServices\Addresses</namespace>
+	<files>
+		<folder>language</folder>
+		<folder>services</folder>
+		<folder plugin="addresses">src</folder>
+	</files>
+</extension>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" method="upgrade">
+    <name>Addresses</name>
+    <packagename>addresses</packagename>
+    <creationDate>2025-08-02</creationDate>
+    <author>René Kreijveld</author>
+    <authorEmail>email@renekreijveld.nl</authorEmail>
+    <authorUrl>http://renekreijveld.nl</authorUrl>
+    <copyright>Copyright © 2025 René Kreijveld Webdevelopment</copyright>
+    <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+    <version>1.1.0</version>
+
+    <scriptfile>package_script.php</scriptfile>
+
+    <files>
+        <file type="plugin" id="addresses" group="webservices">plg_webservices_addresses.zip</file>
+        <file type="component" id="com_addresses">com_addresses.zip</file>
+    </files>
+</extension>

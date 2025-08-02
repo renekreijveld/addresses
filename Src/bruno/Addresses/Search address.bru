@@ -1,0 +1,19 @@
+meta {
+  name: Search address
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{API_ROOT}}/api/v1/addresses/search/edah
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{API_TOKEN}}
+}
+
+settings {
+  encodeUrl: true
+}
