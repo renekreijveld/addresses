@@ -67,30 +67,7 @@ return new class () implements InstallerScriptInterface {
     {
         $this->log("running postflight");
 
-        // Process init sql file
-        $this->log("running addressesInit");
-        $this->addressesInit();
-
-        // Logout and redirect to frontend homepage
-        $this->log("logging out");
-        Factory::getApplication()->logout();
-        header('Location: /');
-        exit;
-    }
-
-    /**
-     * Initializes the Addresses component.
-     *
-     * This method processes the initial SQL file to set up the database structure
-     * for the Addresses component using the Joomla Installer.
-     *
-     * @return void
-     */
-    private function addressesInit(): void
-    {
-        $installer = new Installer();
-        $xmlNode = new \SimpleXMLElement('<sql><file driver="mysql" charset="utf8">' . JPATH_ROOT . '/administrator/components/com_cglegent/sql/init.mysql.utf8.sql</file></sql>');
-        $installer->parseSQLFiles($xmlNode);
+        return true;
     }
 
     /**
