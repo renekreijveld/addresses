@@ -11,6 +11,9 @@
 	<description>PLG_WEBSERVICES_ADDRESSES_XML_DESCRIPTION</description>
 	<blockChildUninstall>true</blockChildUninstall>
 	<namespace path="src">Joomla\Plugin\WebServices\Addresses</namespace>
+
+	<scriptfile>script.php</scriptfile>
+
 	<files>
 		<folder>language</folder>
 		<folder>services</folder>
