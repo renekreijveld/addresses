@@ -26,21 +26,23 @@
         </sql>
     </uninstall>
 
-    <files folder="site">
+    <files folder="components/com_addresses">
         <folder>assets</folder>
         <folder>language</folder>
         <folder>src</folder>
         <folder>tmpl</folder>
     </files>
+
     <administration>
         <menu>COM_ADDRESSES</menu>
         <submenu>
-            <menu link="option=com_addresses&amp;view=addresses" view="addresses" img="components/com_addresses/assets/images/view-16x16-addresses.png" alt="Addresses/Addresses">COM_ADDRESSES_TITLE_ADDRESSES</menu>
+            <menu link="option=com_addresses&amp;view=addresses" view="addresses" >COM_ADDRESSES_TITLE_ADDRESSES</menu>
         </submenu>
-        <files folder="administrator">
+        <files folder="administrator/components/com_addresses">
             <filename>access.xml</filename>
             <filename>config.xml</filename>
             <folder>assets</folder>
+            <folder>bruno</folder>
             <folder>forms</folder>
             <folder>language</folder>
             <folder>services</folder>
@@ -49,4 +51,12 @@
             <folder>tmpl</folder>
         </files>
     </administration>
+
+    <api>
+        <files folder="api/components/com_addresses">
+            <folder>src</folder>
+        </files>
+    </api>
+
+
 </extension>
