@@ -42,7 +42,6 @@
             <filename>access.xml</filename>
             <filename>config.xml</filename>
             <folder>assets</folder>
-            <folder>bruno</folder>
             <folder>forms</folder>
             <folder>language</folder>
             <folder>services</folder>
