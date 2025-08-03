@@ -25,15 +25,12 @@ return new class () implements InstallerScriptInterface {
     {
         /** @var DatabaseDriver $db */
         $db    = Factory::getContainer()->get('DatabaseDriver');
-        $query = sprintf(
-            'UPDATE %s SET %s = 1 WHERE %s = %s AND %s = %s',
-            $db->quoteName('#__extensions'),
-            $db->quoteName('enabled'),
-            $db->quoteName('type'),
-            $db->quote('plugin'),
-            $db->quoteName('name'),
-            $db->quote('PLG_WEBSERVICES_ADDRESSES')
-        );
+        $query = $db->getQuery(true)
+            ->update($db->quoteName('#__extensions'))
+            ->set($db->quoteName('enabled') . ' = 1')
+            ->where($db->quoteName('type') . ' = ' . $db->quote('plugin'))
+            ->where($db->quoteName('folder') . ' = ' . $db->quote('webservices'))
+            ->where($db->quoteName('name') . ' = ' . $db->quote('PLG_WEBSERVICES_ADDRESSES'));
         $db->setQuery($query);
 
         return $db->execute();
