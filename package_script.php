@@ -67,9 +67,11 @@ return new class () implements InstallerScriptInterface {
     {
         $this->log("running postflight");
 
-        // Process init sql file
-        $this->log("running addressesInit");
-        $this->addressesInit();
+        if ($type === 'install' || $type === 'discover_install') {
+            // Process init sql file
+            $this->log("running addressesInit");
+            $this->addressesInit();
+        }
 
         return true;
     }
