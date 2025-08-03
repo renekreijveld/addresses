@@ -24,10 +24,10 @@ $wa->useScript('keepalive')
 	->useScript('com_contenthistory.admin-history-versions');
 ?>
 <form action="<?php echo Route::_('index.php?option=com_addresses&layout=edit&id=' . $this->item->id); ?>" method="post"
-	enctype="multipart/form-data" name="adminForm" id="adminForm" class="form-validate">
-	<div class="row-fluid">
-		<div class="span10 form-horizontal">
-			<fieldset class="adminform">
+	enctype="multipart/form-data" name="adminForm" id="adminForm" class="form-validate form-horizontal">
+	<fieldset class="adminform">
+		<div class="row">
+			<div class="col-4">
 				<div class="control-group">
 					<div class="control-label">
 						<?php echo $this->form->getLabel('id'); ?>
@@ -36,46 +36,8 @@ $wa->useScript('keepalive')
 						<?php echo $this->form->getInput('id'); ?>
 					</div>
 				</div>
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('title'); ?>
-					</div>
-					<div class="controls">
-						<?php echo $this->form->getInput('title'); ?>
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('address'); ?>
-					</div>
-					<div class="controls">
-						<?php echo $this->form->getInput('address'); ?>
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('postcode'); ?>
-					</div>
-					<div class="controls">
-						<?php echo $this->form->getInput('postcode'); ?>
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('city'); ?>
-					</div>
-					<div class="controls">
-						<?php echo $this->form->getInput('city'); ?>
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('country'); ?>
-					</div>
-					<div class="controls">
-						<?php echo $this->form->getInput('country'); ?>
-					</div>
-				</div>
+			</div>
+			<div class="col-4">
 				<div class="control-group">
 					<div class="control-label">
 						<?php echo $this->form->getLabel('state'); ?>
@@ -84,6 +46,8 @@ $wa->useScript('keepalive')
 						<?php echo $this->form->getInput('state'); ?>
 					</div>
 				</div>
+			</div>
+			<div class="col-4">
 				<div class="control-group">
 					<div class="control-label">
 						<?php echo $this->form->getLabel('created_by'); ?>
@@ -92,11 +56,77 @@ $wa->useScript('keepalive')
 						<?php echo $this->form->getInput('created_by'); ?>
 					</div>
 				</div>
-			</fieldset>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-4">
+				<div class="control-group">
+					<div class="control-label">
+						<?php echo $this->form->getLabel('title'); ?>
+					</div>
+					<div class="controls">
+						<?php echo $this->form->getInput('title'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="control-group">
+					<div class="control-label">
+						<?php echo $this->form->getLabel('catid'); ?>
+					</div>
+					<div class="controls">
+						<?php echo $this->form->getInput('catid'); ?>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-4">
+				<div class="control-group">
+					<div class="control-label">
+						<?php echo $this->form->getLabel('address'); ?>
+					</div>
+					<div class="controls">
+						<?php echo $this->form->getInput('address'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="control-group">
+					<div class="control-label">
+						<?php echo $this->form->getLabel('postcode'); ?>
+					</div>
+					<div class="controls">
+						<?php echo $this->form->getInput('postcode'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="control-group">
+					<div class="control-label">
+						<?php echo $this->form->getLabel('city'); ?>
+					</div>
+					<div class="controls">
+						<?php echo $this->form->getInput('city'); ?>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-4">
+				<div class="control-group">
+					<div class="control-label">
+						<?php echo $this->form->getLabel('country'); ?>
+					</div>
+					<div class="controls">
+						<?php echo $this->form->getInput('country'); ?>
+					</div>
+				</div>
+			</div>
 		</div>
-		<input type="hidden" name="task" value="" />
-		<?php echo HTMLHelper::_('form.token'); ?>
-	</div>
+	</fieldset>			
+	<input type="hidden" name="task" value="" />
+	<?php echo HTMLHelper::_('form.token'); ?>
 	<div id="validation-form-failed" data-backend-detail="address"
 		data-message="<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>">
 	</div>

@@ -117,7 +117,9 @@ class AddressesModel extends ListModel
 		$query->from('`#__addresses` AS a');
 
 		$query->select('i.name AS `created_by`');
+		$query->select('c.title AS `category`');
 		$query->leftJoin($this->_db->qn('#__users') . ' AS `i` ON i.id = a.created_by');
+		$query->leftJoin($this->_db->qn('#__categories') . ' AS `c` ON (c.id = a.catid AND c.extension = ' . $this->_db->q('com_addresses') . ')');
 
 		// Filter by published state
 		$state = $this->getState('filter.published');
@@ -149,6 +151,11 @@ class AddressesModel extends ListModel
 				// Build the search query from the search word and search columns
 				$query = AddressesHelper::buildSearchQuery($searchPhrase, $searchColumns, $query);
 			}
+		}
+
+		$searchCategory = $this->getState('filter.catid');
+		if (!empty($searchCategory)) {
+			$query->where($this->_db->qn('a.catid') . ' = ' . $this->_db->q($searchCategory));
 		}
 
 		// Search for a specific postcode (only the first 4 digits)

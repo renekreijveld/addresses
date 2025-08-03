@@ -50,6 +50,9 @@ if ($listOrder && !empty($this->items)) {
 							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_TITLE', 'a.title', $listDirn, $listOrder); ?>
 						</th>
 						<th class="left">
+							<?php echo HTMLHelper::_('grid.sort', 'JCATEGORY', 'c.title', $listDirn, $listOrder); ?>
+						</th>
+						<th class="left">
 							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_ADDRESS', 'a.address', $listDirn, $listOrder); ?>
 						</th>
 						<th class="left">
@@ -63,9 +66,6 @@ if ($listOrder && !empty($this->items)) {
 						</th>
 						<th class="left">
 							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_STATE', 'a.state', $listDirn, $listOrder); ?>
-						</th>
-						<th class="left">
-							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
 						</th>
 						<th width="1%" class="nowrap">
 							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_ID', 'a.id', $listDirn, $listOrder); ?>
@@ -110,6 +110,9 @@ if ($listOrder && !empty($this->items)) {
 								</a>
 							</td>
 							<td>
+								<?php echo $item->category; ?>
+							</td>
+							<td>
 								<?php echo $item->address; ?>
 							</td>
 							<td>
@@ -123,9 +126,6 @@ if ($listOrder && !empty($this->items)) {
 							</td>
 							<td>
 								<?php echo HTMLHelper::_('jgrid.published', $item->state, $i, 'addresses.', $canChange, 'cb'); ?>
-							</td>
-							<td>
-								<?php echo $item->created_by; ?>
 							</td>
 							<td>
 								<a

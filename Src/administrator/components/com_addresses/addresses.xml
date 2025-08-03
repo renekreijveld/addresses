@@ -37,6 +37,7 @@
         <menu>COM_ADDRESSES</menu>
         <submenu>
             <menu link="option=com_addresses&amp;view=addresses" view="addresses" >COM_ADDRESSES_TITLE_ADDRESSES</menu>
+            <menu link="option=com_categories&amp;extension=com_addresses">JCATEGORIES</menu>
         </submenu>
         <files folder="administrator/components/com_addresses">
             <filename>access.xml</filename>
