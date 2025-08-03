@@ -2,6 +2,7 @@
 
 # Script to package Joomla! component and plugins into a package installer zip file
 # Written by: René Kreijveld
+# Based on the work of Pieter-Jan de Vries
 
 baseDir=$(pwd)
 srcDir=${baseDir}/Src
@@ -20,6 +21,7 @@ echo -e "\nPackaging version ${version} of ${name} into:\n${versionDir}/${packag
 
 mkdir -p "${versionDir}"
 
+# If an old version of the package exists, remove it
 [ -f ${versionDir}/${packageFile} ] && rm ${versionDir}/${packageFile}
 
 # Component
@@ -28,6 +30,7 @@ componentName=${name}
 componentFile=${versionDir}/com_${componentName}.zip
 
 cd ${srcDir}
+
 # Create component zipfile
 zip -q -r ${componentFile} \
   administrator/components/com_${componentName} \
@@ -54,7 +57,16 @@ do
   echo -e "Created ${pluginFile}.\n"
 done
 
-# Package
+# Bruno installer files
+echo -e "Creating bruno configuration installer zip:\n"
+extensionName=bruno
+extensionDir=${srcDir}/${extensionName}
+extensionFile=${versionDir}/${extensionName}.zip
+cd ${extensionDir}
+zip -q -r ${extensionFile} * --exclude ${exclude}
+echo -e "Created ${extensionFile}.\n"
+
+# Put package together
 cd ${versionDir}
 
 cp ${baseDir}/package.xml ${versionDir}/${packageName}.xml

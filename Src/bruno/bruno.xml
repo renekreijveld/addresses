@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="file" method="upgrade">
+    <name>Bruno configuration files</name>
+    <author>René Kreijveld</author>
+    <creationDate>2025-08-03</creationDate>
+    <copyright>Copyright © 2025 René Kreijveld Webdevelopment</copyright>
+    <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+    <authorEmail>email@renekreijveld.nl</authorEmail>
+    <authorUrl>http://renekreijveld.nl</authorUrl>
+    <version>1.0.0</version>
+    <description>Installer package for the Bruno configuration files, installed in the /bruno folder. More informarion about Bruno at https://www.usebruno.com.</description>
+
+    <scriptfile>script.php</scriptfile>
+
+    <fileset>
+        <files target="/">
+            <folder>bruno</folder>
+        </files>
+    </fileset>
+</extension>
