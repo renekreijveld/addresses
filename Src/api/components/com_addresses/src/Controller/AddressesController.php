@@ -42,7 +42,7 @@ class AddressesController extends ApiController
 
     public function displayList(): AddressesController
     {
-        // $this->input->set('page', ['offset' => 0, 'limit' => 99999999]);
+        $this->input->set('page', ['offset' => 0, 'limit' => 99999999]);
 
         parent::displayList();
 
@@ -51,7 +51,7 @@ class AddressesController extends ApiController
 
     public function search(): AddressesController
     {
-        // $this->input->set('page', ['offset' => 0, 'limit' => 99999999]);
+        $this->input->set('page', ['offset' => 0, 'limit' => 99999999]);
 
         $search    = $this->input->get('search', '', 'string');
         $modelName = $this->input->get('model', $this->contentType);
@@ -70,7 +70,7 @@ class AddressesController extends ApiController
 
     public function postcode(): AddressesController
     {
-        // $this->input->set('page', ['offset' => 0, 'limit' => 99999999]);
+        $this->input->set('page', ['offset' => 0, 'limit' => 99999999]);
 
         $postcode = $this->input->get('postcode', '', 'string');
         $postcode = substr($postcode, 0, 4) . ' ' . substr($postcode, 4, 2);
@@ -89,5 +89,21 @@ class AddressesController extends ApiController
         return $this;
     }
 
+    public function add(): AddressesController
+    {
+        $data = json_decode($this->input->json->getRaw(), false);
 
+        parent::add();
+
+        return $this;
+    }
+
+    public function delete($id = null): AddressesController
+    {
+        $data = json_decode($this->input->json->getRaw(), false);
+
+        parent::delete($data->id);
+
+        return $this;
+    }
 }

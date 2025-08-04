@@ -63,6 +63,8 @@ final class Addresses extends CMSPlugin implements SubscriberInterface
             new Route(['GET'], 'v1/addresses/:id', 'addresses.displayItem', ['id' => '(\d+)'], $defaults),
             new Route(['GET'], 'v1/addresses/search/:search', 'addresses.search', ['search' => '[a-zA-Z0-9 ]*'], $defaults),
             new Route(['GET'], 'v1/addresses/postcode/:postcode', 'addresses.postcode', ['postcode' => '[0-9]{4}[a-zA-Z]{2}'], $defaults),
+            new Route(['POST'], 'v1/addresses', 'addresses.add', [], $defaults),
+            new Route(['DELETE'], 'v1/addresses', 'addresses.delete', [], $defaults)
         ];
 
         $router->addRoutes($routes);
