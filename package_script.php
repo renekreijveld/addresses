@@ -11,6 +11,7 @@
 define('MODIFIED', 1);
 define('NOT_MODIFIED', 2);
 
+// No direct access
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;

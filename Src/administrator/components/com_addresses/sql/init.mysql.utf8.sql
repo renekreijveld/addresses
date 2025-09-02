@@ -1,3 +1,16 @@
+/*
+ * @package     Com_addresses
+ * @version     1.3.1
+ * @copyright   Copyright (C) 2025. All rights reserved.
+ * @license     GNU General Public License version 3 or later; see LICENSE.txt
+ * @author      René Kreijveld <email@renekreijveld.nl> - https://renekreijveld.nl
+ */
+
+/*
+ * Mysql init file
+ * This SQL script loads sample data into the #__addresses database table
+ */
+
 INSERT INTO `#__addresses` (`catid`, `created_by`, `state`, `ordering`, `title`, `address`, `postcode`, `city`, `country`) VALUES
 (0,	0,	1,	1,	'Bakkerij De Zon',	'Dorpsstraat 12',	'1234 AB',	'Amersfoort',	'Nederland'),
 (0,	0,	1,	2,	'Café De Brug',	'Marktplein 8',	'2345 BC',	'Arnhem',	'Nederland'),

@@ -8,7 +8,7 @@
     <authorEmail>email@renekreijveld.nl</authorEmail>
     <authorUrl>https://renekreijveld.nl</authorUrl>
     <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
-    <version>1.0.0</version>
+    <version>1.3.1</version>
     <description></description>
     <namespace path="src">Joomla\Component\Addresses</namespace>
 
@@ -36,7 +36,7 @@
     <administration>
         <menu>COM_ADDRESSES</menu>
         <submenu>
-            <menu link="option=com_addresses&amp;view=addresses" view="addresses" >COM_ADDRESSES_TITLE_ADDRESSES</menu>
+            <menu link="option=com_addresses&amp;view=addresses" view="addresses">COM_ADDRESSES_TITLE_ADDRESSES</menu>
             <menu link="option=com_categories&amp;extension=com_addresses">JCATEGORIES</menu>
         </submenu>
         <files folder="administrator/components/com_addresses">

@@ -1,3 +1,16 @@
+/*
+ * @package     Com_addresses
+ * @version     1.3.1
+ * @copyright   Copyright (C) 2025. All rights reserved.
+ * @license     GNU General Public License version 3 or later; see LICENSE.txt
+ * @author      René Kreijveld <email@renekreijveld.nl> - https://renekreijveld.nl
+ */
+
+/*
+ * Mysql install file
+ * This SQL script creates the #__addresses database table
+ */
+
 CREATE TABLE
 	IF NOT EXISTS `#__addresses` (
 		`id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT,

@@ -1,7 +1,7 @@
 <?php
 /**
- * @package     com_addresses
- * @version     1.0.0
+ * @package     Com_addresses
+ * @version     1.3.1
  * @copyright   Copyright (C) 2025. All rights reserved.
  * @license     GNU General Public License version 3 or later; see LICENSE.txt
  * @author      René Kreijveld <email@renekreijveld.nl> - https://renekreijveld.nl
@@ -24,15 +24,14 @@ if ($listOrder && !empty($this->items)) {
 	HTMLHelper::_('draggablelist.draggable');
 }
 ?>
-<form action="<?php echo Route::_('index.php?option=com_addresses&view=addresses'); ?>" method="post" name="adminForm"
-	id="adminForm" data-list-order="<?php echo $listOrder; ?>">
+<form action="<?= Route::_('index.php?option=com_addresses&view=addresses'); ?>" method="post" name="adminForm" id="adminForm" data-list-order="<?= $listOrder; ?>">
 	<?php if (!empty($this->sidebar)): ?>
 		<div id="j-sidebar-container" class="span2">
-			<?php echo $this->sidebar; ?>
+			<?= $this->sidebar; ?>
 		</div>
 		<div id="j-main-container" class="span10">
-		<?php else: ?>
-			<?php echo LayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
+		<?php else : ?>
+			<?= LayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
 			<div id="j-main-container">
 			<?php endif; ?>
 			<table class="table table-striped" id="addressList">
@@ -40,40 +39,40 @@ if ($listOrder && !empty($this->items)) {
 					<tr>
 						<?php if (isset($this->items[0]->ordering)): ?>
 							<th width="1%" class="nowrap center hidden-phone">
-								<?php echo HTMLHelper::_('grid.sort', '<i class="icon-menu-2"></i>', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
+								<?= HTMLHelper::_('grid.sort', '<i class="icon-menu-2"></i>', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
 							</th>
 						<?php endif; ?>
 						<th width="1%" class="nowrap center">
-							<?php echo HTMLHelper::_('grid.checkall'); ?>
+							<?= HTMLHelper::_('grid.checkall'); ?>
 						</th>
 						<th class="left">
-							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_TITLE', 'a.title', $listDirn, $listOrder); ?>
+							<?= HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_TITLE', 'a.title', $listDirn, $listOrder); ?>
 						</th>
 						<th class="left">
-							<?php echo HTMLHelper::_('grid.sort', 'JCATEGORY', 'c.title', $listDirn, $listOrder); ?>
+							<?= HTMLHelper::_('grid.sort', 'JCATEGORY', 'c.title', $listDirn, $listOrder); ?>
 						</th>
 						<th class="left">
-							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_ADDRESS', 'a.address', $listDirn, $listOrder); ?>
+							<?= HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_ADDRESS', 'a.address', $listDirn, $listOrder); ?>
 						</th>
 						<th class="left">
-							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_POSTCODE', 'a.postcode', $listDirn, $listOrder); ?>
+							<?= HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_POSTCODE', 'a.postcode', $listDirn, $listOrder); ?>
 						</th>
 						<th class="left">
-							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_CITY', 'a.city', $listDirn, $listOrder); ?>
+							<?= HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_CITY', 'a.city', $listDirn, $listOrder); ?>
 						</th>
 						<th class="left">
-							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_COUNTRY', 'a.country', $listDirn, $listOrder); ?>
+							<?= HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_COUNTRY', 'a.country', $listDirn, $listOrder); ?>
 						</th>
 						<th class="left">
-							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_STATE', 'a.state', $listDirn, $listOrder); ?>
+							<?= HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_STATE', 'a.state', $listDirn, $listOrder); ?>
 						</th>
 						<th width="1%" class="nowrap">
-							<?php echo HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_ID', 'a.id', $listDirn, $listOrder); ?>
+							<?= HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_BACKEND_LIST_ADDRESSES_ID', 'a.id', $listDirn, $listOrder); ?>
 						</th>
 					</tr>
 				</thead>
-				<tbody <?php if ($saveOrder): ?> class="js-draggable" data-url="<?php echo $this->saveOrderingUrl; ?>"
-						data-direction="<?php echo strtolower($listDirn); ?>" data-nested="true" <?php endif; ?>>
+				<tbody <?php if ($saveOrder): ?> class="js-draggable" data-url="<?= $this->saveOrderingUrl; ?>"
+						data-direction="<?= strtolower($listDirn); ?>" data-nested="true" <?php endif; ?>>
 					<?php
 					foreach ($this->items as $i => $item):
 						$ordering   = ($listOrder == 'a.ordering');
@@ -82,7 +81,7 @@ if ($listOrder && !empty($this->items)) {
 						$canCheckin = $this->user->authorise('core.manage', 'com_addresses');
 						$canChange  = $this->user->authorise('core.edit.state', 'com_addresses');
 						?>
-						<tr class="row<?php echo $i % 2; ?>" data-draggable-group="1">
+						<tr class="row<?= $i % 2; ?>" data-draggable-group="1">
 							<td class="order nowrap center hidden-phone">
 								<?php
 								$iconClass = '';
@@ -92,45 +91,43 @@ if ($listOrder && !empty($this->items)) {
 									$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::tooltipText('JORDERINGDISABLED');
 								}
 								?>
-								<span class="sortable-handler<?php echo $iconClass; ?>">
+								<span class="sortable-handler<?= $iconClass; ?>">
 									<span class="icon-ellipsis-v"></span>
 								</span>
 								<?php if ($canChange && $this->saveOrder): ?>
 									<input type="text" style="display:none" name="order[]" size="5"
-										value="<?php echo $item->ordering; ?>" class="width-20 text-area-order " />
+										value="<?= $item->ordering; ?>" class="width-20 text-area-order " />
 								<?php endif; ?>
 							</td>
 							<td class="center">
-								<?php echo HTMLHelper::_('grid.id', $i, $item->id); ?>
+								<?= HTMLHelper::_('grid.id', $i, $item->id); ?>
 							</td>
 							<td>
-								<a
-									href="<?php echo Route::_('index.php?option=com_addresses&task=address.edit&id=' . $item->id); ?>">
-									<?php echo $item->title; ?>
+								<a href="<?= Route::_('index.php?option=com_addresses&task=address.edit&id=' . $item->id); ?>">
+									<?= $item->title; ?>
 								</a>
 							</td>
 							<td>
-								<?php echo $item->category; ?>
+								<?= $item->category; ?>
 							</td>
 							<td>
-								<?php echo $item->address; ?>
+								<?= $item->address; ?>
 							</td>
 							<td>
-								<?php echo $item->postcode; ?>
+								<?= $item->postcode; ?>
 							</td>
 							<td>
-								<?php echo $item->city; ?>
+								<?= $item->city; ?>
 							</td>
 							<td>
-								<?php echo $item->country; ?>
+								<?= $item->country; ?>
 							</td>
 							<td>
-								<?php echo HTMLHelper::_('jgrid.published', $item->state, $i, 'addresses.', $canChange, 'cb'); ?>
+								<?= HTMLHelper::_('jgrid.published', $item->state, $i, 'addresses.', $canChange, 'cb'); ?>
 							</td>
 							<td>
-								<a
-									href="<?php echo Route::_('index.php?option=com_addresses&task=address.edit&id=' . $item->id); ?>">
-									<?php echo $item->id; ?>
+								<a href="<?= Route::_('index.php?option=com_addresses&task=address.edit&id=' . $item->id); ?>">
+									<?= $item->id; ?>
 								</a>
 							</td>
 						</tr>
@@ -138,13 +135,13 @@ if ($listOrder && !empty($this->items)) {
 				</tbody>
 			</table>
 			<div class="pagination center">
-				<?php echo $this->pagination->getListFooter(); ?>
+				<?= $this->pagination->getListFooter(); ?>
 			</div>
 			<input type="hidden" name="task" value="" />
 			<input type="hidden" name="boxchecked" value="0" />
-			<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>" />
-			<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
-			<?php echo HTMLHelper::_('form.token'); ?>
+			<input type="hidden" name="filter_order" value="<?= $listOrder; ?>" />
+			<input type="hidden" name="filter_order_Dir" value="<?= $listDirn; ?>" />
+			<?= HTMLHelper::_('form.token'); ?>
 		</div>
 	</div>
 </form>

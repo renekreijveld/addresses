@@ -1,4 +1,13 @@
-.list-media {
+/**
+ * @package     Com_addresses
+ * @version     1.3.1
+ * @copyright   Copyright (C) 2025. All rights reserved.
+ * @license     GNU General Public License version 3 or later; see LICENSE.txt
+ * @author      René Kreijveld <email@renekreijveld.nl> - https://renekreijveld.nl
+ * @about       addresses.css file for backend component
+ */
+
+ .list-media {
   max-width: 100px;
   max-height: 100px;
 }

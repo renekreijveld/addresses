@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @package     com_addresses
- * @version     1.0.0
+ * @package     Com_addresses
+ * @version     1.3.1
  * @copyright   Copyright (C) 2025. All rights reserved.
  * @license     GNU General Public License version 3 or later; see LICENSE.txt
  * @author      René Kreijveld <email@renekreijveld.nl> - https://renekreijveld.nl
@@ -15,9 +15,8 @@ use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\Event\SubscriberInterface;
 use Joomla\Router\Route;
 
-// phpcs:disable PSR1.Files.SideEffects
+// No direct access
 \defined('_JEXEC') or die;
-// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Web Services adapter for com_addresses.
