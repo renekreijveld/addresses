@@ -1,0 +1,22 @@
+{
+    "folders": [
+        {
+            "path": "/Jouw/homefolder/Development/Repos/addresses"
+        },
+        {
+            "path": "/Jouw/homefolder/Development/Sites/adressen"
+        }
+    ],
+    "settings": {
+        "fsdeploy.nodes": [
+            {
+                "source": "/Jouw/homefolder/Development/Repos/addresses/Src",
+                "target": "/Jouw/homefolder/Development/Sites/adressen",
+                "include": "**/*.*",
+                "exclude": ".vscode/*,.gitignore",
+            }
+        ],
+        "fsdeploy.deployOnSave": true,
+        "fsdeploy.deployWorkspaceOnSave": false
+    }
+}
