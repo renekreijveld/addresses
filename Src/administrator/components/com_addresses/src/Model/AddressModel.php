@@ -83,7 +83,7 @@ class AddressModel extends AdminModel
 				$db    = Factory::getContainer()->get('DatabaseDriver');
 				$query = $db->getQuery(true)
 					->select('MAX(ordering)')
-					->from($db->qn('#__addresses'));
+					->from($db->quoteName('#__addresses'));
 				$db->setQuery($query);
 				$max             = $db->loadResult();
 				$table->ordering = $max + 1;

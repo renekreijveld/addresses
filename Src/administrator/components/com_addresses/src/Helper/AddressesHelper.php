@@ -81,7 +81,7 @@ class AddressesHelper
 		$where = [];
 
 		foreach ($searchColumns as $i => $searchColumn) {
-			$where[] = $db->qn($searchColumn) . ' LIKE ' . $db->q('%' . $db->escape($searchPhrase, true) . '%');
+			$where[] = $db->quoteName($searchColumn) . ' LIKE ' . $db->q('%' . $db->escape($searchPhrase, true) . '%');
 		}
 
 		if (!empty($where)) {

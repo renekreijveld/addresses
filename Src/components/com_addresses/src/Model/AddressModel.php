@@ -46,9 +46,9 @@ class AddressModel extends FormModel
         $query->from('#__addresses as a');
 
         $query->select('i.name AS `created_by`');
-        $query->leftJoin($this->_db->qn('#__users') . ' AS `i` ON i.id = a.created_by');
+        $query->leftJoin($this->_db->quoteName('#__users') . ' AS `i` ON i.id = a.created_by');
 
-        $query->where($db->qn('a.id') . ' = ' . $db->q($this->getId()));
+        $query->where($db->quoteName('a.id') . ' = ' . $db->q($this->getId()));
         $db->setQuery($query);
 
         try {

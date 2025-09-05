@@ -290,14 +290,14 @@ class AddressTable extends Table
             $key = (array) $this->_tbl_key;
         }
 
-        $statement = 'UPDATE ' . $this->_db->qn($this->_tbl) . ' SET %s WHERE %s';
+        $statement = 'UPDATE ' . $this->_db->quoteName($this->_tbl) . ' SET %s WHERE %s';
 
         foreach (get_object_vars($this) as $k => $v) {
             if (is_array($v) || is_object($v) || $k[0] === '_') {
                 continue;
             }
             if (in_array($k, $key)) {
-                $where[] = $this->_db->qn($k) . ($v === null ? ' IS NULL' : ' = ' . $this->_db->q($v));
+                $where[] = $this->_db->quoteName($k) . ($v === null ? ' IS NULL' : ' = ' . $this->_db->q($v));
                 continue;
             }
 
@@ -311,7 +311,7 @@ class AddressTable extends Table
                 $val = $this->_db->q($v);
             }
 
-            $fields[$k] = $this->_db->qn($k) . '=' . $val;
+            $fields[$k] = $this->_db->quoteName($k) . '=' . $val;
         }
 
         if (empty($fields)) {
@@ -343,7 +343,7 @@ class AddressTable extends Table
         }
         foreach ($this->getFields() as $field) {
             if ($field->Null === 'YES' && $data[$field->Field] === '' && in_array($field->Type, ['date', 'datetime'])) {
-                $fields[$field->Field] = $this->_db->qn($field->Field) . ' = NULL';
+                $fields[$field->Field] = $this->_db->quoteName($field->Field) . ' = NULL';
             }
         }
         return $fields;

@@ -13,6 +13,9 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Form\Field\ListField;
 use Joomla\CMS\Factory;
+use Joomla\CMS\User\UserFactoryInterface;
+use Joomla\Database\ParameterType;
+
 
 /**
  * The form field implementation
@@ -44,11 +47,12 @@ class CreatedbyField extends ListField
 			$query = $db->getQuery(true)
 				->select('id')
 				->from('#__users')
-				->where($db->qn('id') . ' = ' . $db->q($this->value));
+				->where($db->quoteName('id') . ' = :id')
+				->bind(':id', $this->value, ParameterType::INTEGER);
 			$db->setQuery($query);
 			$userId = $db->loadResult();
 			if ($userId) {
-				$user = Factory::getUser($this->value);
+				$user = Factory::getContainer()->get(UserFactoryInterface::class)->loadUserById((int) $this->value);
 			} else {
 				$userExists  = false;
 				$this->value = $user->id;

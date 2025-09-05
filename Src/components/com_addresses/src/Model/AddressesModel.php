@@ -103,7 +103,7 @@ class AddressesModel extends ListModel
         $query->from('`#__addresses` AS a');
 
         $query->select('i.name AS `created_by`');
-        $query->leftJoin($this->_db->qn('#__users') . ' AS `i` ON i.id = a.created_by');
+        $query->leftJoin($this->_db->quoteName('#__users') . ' AS `i` ON i.id = a.created_by');
 
         $query->where('a.state = 1');
 
@@ -124,13 +124,13 @@ class AddressesModel extends ListModel
             if (stripos($searchWord, 'id:') === 0) {
                 // Build the ID search
                 $idPart = (int) substr($searchWord, 3);
-                $query->where($this->_db->qn('a.id') . ' = ' . $this->_db->q($idPart));
+                $query->where($this->_db->quoteName('a.id') . ' = ' . $this->_db->q($idPart));
             } else {
                 $query = DatabaseHelper::buildSearchQuery($searchWord, $searchColumns, $query);
             }
         }
 
-        $query->group($this->_db->qn('a.id'));
+        $query->group($this->_db->quoteName('a.id'));
 
         // Add the list ordering clause
         $orderCol  = $this->state->get('list.ordering');
