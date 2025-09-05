@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # Script to package Joomla! component and plugins into a package installer zip file
 # Written by: René Kreijveld
@@ -18,8 +18,9 @@ versionDir="${packageDir}/${version}"
 
 packageFile=${packageName}-${version}.zip
 
-echo -e "\nPackaging version ${version} of ${name} into:\n${versionDir}/${packageFile}.\n"
+echo -e "\nPackaging version ${version} of ${name} into: ${packageFile}.\n"
 
+echo -e "- Cleaning old versions"
 mkdir -p "${versionDir}"
 mkdir -p "${installerDir}"
 
@@ -28,7 +29,7 @@ mkdir -p "${installerDir}"
 rm -f ${installerDir}/${packageFile}
 
 # Component
-echo -e "Creating component installer zip file:\n"
+echo -e "- Creating component installer zip file"
 componentName=${name}
 componentFile=${versionDir}/com_${componentName}.zip
 
@@ -40,14 +41,14 @@ zip -q -r ${componentFile} \
   api/components/com_${componentName} \
   components/com_${componentName} \
   --exclude ${exclude}
-echo -e "Created ${componentFile}."
+echo -e "- Created ${componentFile}"
 cd administrator/components/com_${componentName}
 # Add XML file to component zip
 zip -q ${componentFile} ${componentName}.xml
-echo -e "Added ${componentName}.xml to com_${componentName}.zip.\n"
+echo -e "- Added ${componentName}.xml to com_${componentName}.zip"
 
 # Plugins
-echo -e "Creating plugin(s) installer zip file(s):\n"
+echo -e "- Creating plugin(s) installer zip file(s)"
 pluginName=addresses
 
 for group in webservices
@@ -57,17 +58,17 @@ do
 
   cd ${extensionDir}
   zip -q -r ${pluginFile} * --exclude ${exclude}
-  echo -e "Created ${pluginFile}.\n"
+  echo -e "- Created ${pluginFile}"
 done
 
 # Bruno installer files
-echo -e "Creating bruno configuration installer zip:\n"
+echo -e "- Creating bruno configuration installer zip"
 extensionName=bruno
 extensionDir=${srcDir}/${extensionName}
 extensionFile=${versionDir}/${extensionName}.zip
 cd ${extensionDir}
 zip -q -r ${extensionFile} * --exclude ${exclude}
-echo -e "Created ${extensionFile}.\n"
+echo -e "- Created ${extensionFile}"
 
 # Put package together
 cd ${versionDir}
@@ -75,11 +76,9 @@ cd ${versionDir}
 cp ${baseDir}/package.xml ${versionDir}/${packageName}.xml
 cp ${baseDir}/package_script.php ${versionDir}
 
-echo -e "Moving zips into installer package zip."
+echo -e "- Moving zips into installer package zip"
 zip -m -q -r ${packageName}-${version}.zip ${packageName}.xml package_script.php *.zip --exclude ${exclude}
-rm -f ${installerDir}/*.zip
 cp ${versionDir}/${packageName}-${version}.zip ${installerDir}
-zip -m -q -r ${packageName}-${version}.zip ${packageName}.xml package_script.php *.zip --exclude ${exclude}
 echo -e "\nPackage and installer ready:"
-echo -e "${versionDir}/${packageFile}\n"
+echo -e "${versionDir}/${packageFile}"
 echo -e "${installerDir}/${packageFile}\n"
