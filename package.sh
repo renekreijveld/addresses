@@ -7,6 +7,7 @@
 baseDir=$(pwd)
 srcDir=${baseDir}/Src
 packageDir=${baseDir}/packages
+installerDir=${baseDir}/installer
 name=addresses
 packageName=pkg_${name}
 
@@ -20,9 +21,11 @@ packageFile=${packageName}-${version}.zip
 echo -e "\nPackaging version ${version} of ${name} into:\n${versionDir}/${packageFile}.\n"
 
 mkdir -p "${versionDir}"
+mkdir -p "${installerDir}"
 
 # If an old version of the package exists, remove it
 [ -f ${versionDir}/${packageFile} ] && rm ${versionDir}/${packageFile}
+rm -f ${installerDir}/${packageFile}
 
 # Component
 echo -e "Creating component installer zip file:\n"
@@ -74,5 +77,9 @@ cp ${baseDir}/package_script.php ${versionDir}
 
 echo -e "Moving zips into installer package zip."
 zip -m -q -r ${packageName}-${version}.zip ${packageName}.xml package_script.php *.zip --exclude ${exclude}
-echo -e "\nPackage ready:"
-echo -e "${versionDir}/${packageName}-${version}.zip.\n"
+rm -f ${installerDir}/*.zip
+cp ${versionDir}/${packageName}-${version}.zip ${installerDir}
+zip -m -q -r ${packageName}-${version}.zip ${packageName}.xml package_script.php *.zip --exclude ${exclude}
+echo -e "\nPackage and installer ready:"
+echo -e "${versionDir}/${packageFile}\n"
+echo -e "${installerDir}/${packageFile}\n"
