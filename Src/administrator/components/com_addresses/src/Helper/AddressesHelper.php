@@ -43,7 +43,7 @@ class AddressesHelper
 	 */
 	public static function getActions(): array
 	{
-		$user   = Factory::getUser();
+		$user   = Factory::getApplication()->getIdentity();
 		$result = [];
 
 		$assetName = 'com_addresses';
@@ -76,7 +76,7 @@ class AddressesHelper
 	 */
 	public static function buildSearchQuery(string $searchPhrase, array $searchColumns, MysqliQuery $query): MysqliQuery
 	{
-		$db = Factory::getDbo();
+		$db = Factory::getContainer()->get('DatabaseDriver');
 
 		$where = [];
 

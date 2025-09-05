@@ -95,7 +95,7 @@ class HtmlView extends BaseHtmlView
     private function hasAccess(): bool
     {
         $app  = Factory::getApplication();
-        $user = Factory::getUser();
+        $user = Factory::getApplication()->getIdentity();
 
         if ($this->_layout == 'edit') {
             $isEdit = ($app->input->getInt('id', 0) || $this->params->get('id'));

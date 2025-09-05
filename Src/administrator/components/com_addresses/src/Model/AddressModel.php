@@ -80,7 +80,7 @@ class AddressModel extends AdminModel
 		if (empty($table->id)) {
 			// Set ordering to the last item if not set
 			if (@$table->ordering === '') {
-				$db    = Factory::getDbo();
+				$db    = Factory::getContainer()->get('DatabaseDriver');
 				$query = $db->getQuery(true)
 					->select('MAX(ordering)')
 					->from($db->qn('#__addresses'));
@@ -105,7 +105,7 @@ class AddressModel extends AdminModel
 			$this->batchSet = true;
 
 			// Get current user
-			$this->user = Factory::getUser();
+			$this->user = Factory::getApplication()->getIdentity();
 
 			// Get table
 			$this->table = $this->getTable();

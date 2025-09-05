@@ -36,7 +36,7 @@ class AddressModel extends FormModel
      */
     private function fetchItem()
     {
-        $db    = $this->getDbo();
+        $db = Factory::getContainer()->get('DatabaseDriver');
         $query = $db->getQuery(true);
 
         $query->select('a.id, a.ordering, a.title');

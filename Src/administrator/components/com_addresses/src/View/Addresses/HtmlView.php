@@ -97,7 +97,7 @@ class HtmlView extends BaseHtmlView
 	 */
 	public function display($tpl = null)
 	{
-		$this->user = Factory::getUser();
+		$this->user = Factory::getApplication()->getIdentity();
 
 		$model            = $this->getModel();
 		$this->state      = $model->getState();
@@ -204,7 +204,7 @@ class HtmlView extends BaseHtmlView
 		$wa->registerAndUseStyle('my-style', 'components/com_addresses/assets/css/addresses.css');
 		$wa->registerAndUseScript('my-script', 'components/com_addresses/assets/js/list.js');
 
-		$user            = Factory::getUser();
+		$user            = Factory::getApplication()->getIdentity();
 		$this->listOrder = $this->escape($this->state->get('list.ordering'));
 		$this->listDirn  = $this->escape($this->state->get('list.direction'));
 		$user->authorise('core.edit.state', 'com_addresses.category');

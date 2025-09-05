@@ -35,12 +35,12 @@ class CreatedbyField extends ListField
 	 */
 	protected function getInput()
 	{
-		$user = Factory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 
 		$userExists = true;
 
 		if ($this->value) {
-			$db    = Factory::getDbo();
+			$db    = Factory::getContainer()->get('DatabaseDriver');
 			$query = $db->getQuery(true)
 				->select('id')
 				->from('#__users')
