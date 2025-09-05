@@ -124,7 +124,7 @@ class AddressesModel extends ListModel
             if (stripos($searchWord, 'id:') === 0) {
                 // Build the ID search
                 $idPart = (int) substr($searchWord, 3);
-                $query->where($this->_db->quoteName('a.id') . ' = ' . $this->_db->q($idPart));
+                $query->where($this->_db->quoteName('a.id') . ' = ' . $this->_db->quote($idPart));
             } else {
                 $query = DatabaseHelper::buildSearchQuery($searchWord, $searchColumns, $query);
             }

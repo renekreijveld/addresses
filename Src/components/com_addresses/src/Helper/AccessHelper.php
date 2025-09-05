@@ -33,7 +33,7 @@ class AccessHelper
         $query = $db->getQuery(true)
             ->select('id, created_by')
             ->from($table)
-            ->where($db->quoteName('created_by') . ' = ' . $db->q((int) $user->id));
+            ->where($db->quoteName('created_by') . ' = ' . $db->quote((int) $user->id));
         $db->setQuery($query);
         $records = $db->loadAssocList();
         foreach ($records as $record) {

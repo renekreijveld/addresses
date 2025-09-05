@@ -120,7 +120,7 @@ class AddressesModel extends ListModel
 		$query->select('i.name AS `created_by`');
 		$query->select('c.title AS `category`');
 		$query->leftJoin($this->_db->quoteName('#__users') . ' AS `i` ON i.id = a.created_by');
-		$query->leftJoin($this->_db->quoteName('#__categories') . ' AS `c` ON (c.id = a.catid AND c.extension = ' . $this->_db->q('com_addresses') . ')');
+		$query->leftJoin($this->_db->quoteName('#__categories') . ' AS `c` ON (c.id = a.catid AND c.extension = ' . $this->_db->quote('com_addresses') . ')');
 
 		// Filter by published state
 		$state = $this->getState('filter.published');
@@ -147,7 +147,7 @@ class AddressesModel extends ListModel
 			if (stripos($searchPhrase, 'id:') === 0) {
 				// Build the ID search
 				$idPart = (int) substr($searchPhrase, 3);
-				$query->where($this->_db->quoteName('a.id') . ' = ' . $this->_db->q($idPart));
+				$query->where($this->_db->quoteName('a.id') . ' = ' . $this->_db->quote($idPart));
 			} else {
 				// Build the search query from the search word and search columns
 				$query = AddressesHelper::buildSearchQuery($searchPhrase, $searchColumns, $query);
@@ -156,14 +156,14 @@ class AddressesModel extends ListModel
 
 		$searchCategory = $this->getState('filter.catid');
 		if (!empty($searchCategory)) {
-			$query->where($this->_db->quoteName('a.catid') . ' = ' . $this->_db->q($searchCategory));
+			$query->where($this->_db->quoteName('a.catid') . ' = ' . $this->_db->quote($searchCategory));
 		}
 
 		// Search for a specific postcode (only the first 4 digits)
 		$searchPostcode = $this->getState('filter.postcode');
 		if (!empty($searchPostcode)) {
 			$searchPostcode = '%' . $searchPostcode . '%';
-			$query->where($this->_db->quoteName('a.postcode') . ' LIKE ' . $this->_db->q($searchPostcode));
+			$query->where($this->_db->quoteName('a.postcode') . ' LIKE ' . $this->_db->quote($searchPostcode));
 		}
 
 		$query->group($this->_db->quoteName('a.id'));

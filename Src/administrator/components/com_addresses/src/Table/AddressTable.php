@@ -297,7 +297,7 @@ class AddressTable extends Table
                 continue;
             }
             if (in_array($k, $key)) {
-                $where[] = $this->_db->quoteName($k) . ($v === null ? ' IS NULL' : ' = ' . $this->_db->q($v));
+                $where[] = $this->_db->quoteName($k) . ($v === null ? ' IS NULL' : ' = ' . $this->_db->quote($v));
                 continue;
             }
 
@@ -308,7 +308,7 @@ class AddressTable extends Table
                     continue;
                 }
             } else {
-                $val = $this->_db->q($v);
+                $val = $this->_db->quote($v);
             }
 
             $fields[$k] = $this->_db->quoteName($k) . '=' . $val;

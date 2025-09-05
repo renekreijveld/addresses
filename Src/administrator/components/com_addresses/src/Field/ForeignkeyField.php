@@ -92,7 +92,7 @@ class ForeignkeyField extends ListField
                 ->select($db->quoteName($attributes['key']))
                 ->from($db->quoteName($attributes['table']))
                 ->where($db->quoteName('state') . ' = ' . self::STATE_PUBLISHED)
-                ->where($db->quoteName($attributes['value']) . ' = ' . $db->q($this->value));
+                ->where($db->quoteName($attributes['value']) . ' = ' . $db->quote($this->value));
             $db->setQuery($query);
             $key = $db->loadResult();
         }
