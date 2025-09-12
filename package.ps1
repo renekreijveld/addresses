@@ -126,16 +126,40 @@ Write-Host "- Moving zips into installer package zip"
 $finalPackagePath = Join-Path $versionDir "$packageName-$version.zip"
 $archive = [System.IO.Compression.ZipFile]::Open($finalPackagePath, [System.IO.Compression.ZipArchiveMode]::Create)
 
-# Add XML and PHP files
-$archive.CreateEntryFromFile((Join-Path $versionDir "$packageName.xml"), "$packageName.xml")
-$archive.CreateEntryFromFile((Join-Path $versionDir "package_script.php"), "package_script.php")
-
-# Add all zip files
-Get-ChildItem $versionDir -Filter "*.zip" | Where-Object { $_.Name -ne "$packageName-$version.zip" } | ForEach-Object {
-    $archive.CreateEntryFromFile($_.FullName, $_.Name)
+try {
+    # Add XML and PHP files
+    $xmlFile = Join-Path $versionDir "$packageName.xml"
+    $phpFile = Join-Path $versionDir "package_script.php"
+    
+    # Add XML file
+    $xmlEntry = $archive.CreateEntry("$packageName.xml")
+    $xmlEntryStream = $xmlEntry.Open()
+    $xmlFileStream = [System.IO.File]::OpenRead($xmlFile)
+    $xmlFileStream.CopyTo($xmlEntryStream)
+    $xmlFileStream.Close()
+    $xmlEntryStream.Close()
+    
+    # Add PHP file
+    $phpEntry = $archive.CreateEntry("package_script.php")
+    $phpEntryStream = $phpEntry.Open()
+    $phpFileStream = [System.IO.File]::OpenRead($phpFile)
+    $phpFileStream.CopyTo($phpEntryStream)
+    $phpFileStream.Close()
+    $phpEntryStream.Close()
+    
+    # Add all zip files
+    Get-ChildItem $versionDir -Filter "*.zip" | Where-Object { $_.Name -ne "$packageName-$version.zip" } | ForEach-Object {
+        $zipEntry = $archive.CreateEntry($_.Name)
+        $zipEntryStream = $zipEntry.Open()
+        $zipFileStream = [System.IO.File]::OpenRead($_.FullName)
+        $zipFileStream.CopyTo($zipEntryStream)
+        $zipFileStream.Close()
+        $zipEntryStream.Close()
+    }
 }
-
-$archive.Dispose()
+finally {
+    $archive.Dispose()
+}
 
 # Copy to installer directory
 Copy-Item $finalPackagePath $installerDir
