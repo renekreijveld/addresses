@@ -4,7 +4,7 @@
 
 # To run this script
 # Open PowerShell as Administrator
-# Run: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser (if needed)
+# Run: Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser (if needed)
 # Navigate to your project directory
 # Run: .\package.ps1
 
