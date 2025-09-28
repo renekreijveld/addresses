@@ -102,17 +102,6 @@ foreach ($group in $groups) {
     }
 }
 
-# Bruno installer files
-Write-Host "- Creating bruno configuration installer zip"
-$extensionName = "bruno"
-$extensionDir = Join-Path $srcDir $extensionName
-$extensionFile = Join-Path $versionDir "$extensionName.zip"
-
-if (Test-Path $extensionDir) {
-    [System.IO.Compression.ZipFile]::CreateFromDirectory($extensionDir, $extensionFile, $compressionLevel, $includeBaseDirectory)
-    Write-Host "- Created $extensionFile"
-}
-
 # Put package together
 Set-Location $versionDir
 
