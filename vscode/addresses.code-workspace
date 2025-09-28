@@ -16,7 +16,7 @@
                 "exclude": ".vscode/*,.gitignore",
             }
         ],
-        "fsdeploy.deployOnSave": true,
+        "fsdeploy.deployOnSave": false,
         "fsdeploy.deployWorkspaceOnSave": false
     }
 }
