@@ -15,6 +15,5 @@
     <files>
         <file type="plugin" id="addresses" group="webservices">plg_webservices_addresses.zip</file>
         <file type="component" id="com_addresses">com_addresses.zip</file>
-        <file type="file" id="bruno">bruno.zip</file>
     </files>
 </extension>

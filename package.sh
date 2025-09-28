@@ -61,15 +61,6 @@ do
   echo -e "- Created ${pluginFile}"
 done
 
-# Bruno installer files
-echo -e "- Creating bruno configuration installer zip"
-extensionName=bruno
-extensionDir=${srcDir}/${extensionName}
-extensionFile=${versionDir}/${extensionName}.zip
-cd ${extensionDir}
-zip -q -r ${extensionFile} * --exclude ${exclude}
-echo -e "- Created ${extensionFile}"
-
 # Put package together
 cd ${versionDir}
 
