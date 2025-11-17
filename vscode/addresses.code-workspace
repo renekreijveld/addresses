@@ -4,14 +4,14 @@
             "path": "/Users/your_username/Development/Repos/addresses"
         },
         {
-            "path": "/Users/your_username/Development/Sites/adressen"
+            "path": "/Users/your_username/Development/Sites/addresses"
         }
     ],
     "settings": {
         "fsdeploy.nodes": [
             {
                 "source": "/Users/your_username/Development/Repos/addresses/Src",
-                "target": "/Users/your_username/Development/Sites/adressen",
+                "target": "/Users/your_username/Development/Sites/addresses",
                 "include": "**/*.*",
                 "exclude": ".vscode/*,.gitignore",
             }
