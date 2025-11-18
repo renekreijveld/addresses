@@ -13,27 +13,13 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Language\Text;
 use Joomla\Component\Addresses\Site\Helper\DatetimeHelper;
 ?>
-<?php if ($this->params->get('show_page_heading')): ?>
-	<div class="page-header">
-		<h1>
-			<?php if ($this->escape($this->params->get('page_heading'))): ?>
-				<?= $this->escape($this->params->get('page_heading')); ?>
-			<?php else : ?>
-				<?= $this->escape($this->params->get('page_title')); ?>
-			<?php endif; ?>
-		</h1>
-	</div>
-<?php endif; ?>
+<div class="page-header">
+    <h1>
+        <?= $this->item->title; ?>
+    </h1>
+</div>
 <div class="table-responsive">
 	<table class="table table-striped">
-		<tr>
-			<th class="item-title">
-				<?= Text::_('COM_ADDRESSES_HEADING_FRONTEND_DETAIL_ADDRESS_TITLE'); ?>
-			</th>
-			<td>
-				<?= $this->item->title; ?>
-			</td>
-		</tr>
 		<tr>
 			<th class="item-address">
 				<?= Text::_('COM_ADDRESSES_HEADING_FRONTEND_DETAIL_ADDRESS_ADDRESS'); ?>
@@ -76,3 +62,4 @@ use Joomla\Component\Addresses\Site\Helper\DatetimeHelper;
 		</tr>
 	</table>
 </div>
+<p><a href="index.php?option=com_addresses&view=addresses" class="btn btn-primary">Back to list</a></p>
