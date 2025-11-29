@@ -73,6 +73,11 @@ class HtmlView extends BaseHtmlView
     protected $item_id;
 
     /**
+     * The categories list
+     */
+    protected $categories;
+
+    /**
      * @param null $tpl
      *
      * @throws \Exception
@@ -88,6 +93,7 @@ class HtmlView extends BaseHtmlView
         $this->state      = $this->get('State');
         $this->items      = $this->get('Items');
         $this->pagination = $this->get('Pagination');
+        $this->categories = $this->get('Categories');
 
         $this->authorised = [
             'create' => $user->authorise('core.create', 'com_addresses'),

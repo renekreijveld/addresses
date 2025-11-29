@@ -51,6 +51,8 @@ class AddressesModel extends ListModel
                 'a.state',
                 'created_by',
                 'a.created_by',
+                'catid',
+                'a.catid',
             );
         }
 
@@ -78,6 +80,9 @@ class AddressesModel extends ListModel
         $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
 
+        $category = $this->getUserStateFromRequest($this->context . '.filter.catid', 'filter_catid', '', 'int');
+        $this->setState('filter.catid', $category);
+
         // Load the list state
         $this->setState('list.start', $input->get('limitstart', 0, 'uint'));
         $this->setState('list.limit', $input->get('limit', $app->get('list_limit', 20), 'uint'));
@@ -98,12 +103,14 @@ class AddressesModel extends ListModel
 
         $query->select('a.id, a.ordering, a.title');
         $query->select('a.address, a.postcode, a.city');
-        $query->select('a.country, a.state');
+        $query->select('a.country, a.state, a.catid');
 
         $query->from('`#__addresses` AS a');
 
         $query->select('i.name AS `created_by`');
+        $query->select('c.title AS `category`');
         $query->leftJoin($this->_db->quoteName('#__users') . ' AS `i` ON i.id = a.created_by');
+        $query->leftJoin($this->_db->quoteName('#__categories') . ' AS `c` ON (c.id = a.catid AND c.extension = ' . $this->_db->quote('com_addresses') . ')');
 
         $query->where('a.state = 1');
 
@@ -128,6 +135,12 @@ class AddressesModel extends ListModel
             } else {
                 $query = DatabaseHelper::buildSearchQuery($searchWord, $searchColumns, $query);
             }
+        }
+
+        // Filter by category
+        $categoryId = $this->getState('filter.catid');
+        if (!empty($categoryId)) {
+            $query->where($this->_db->quoteName('a.catid') . ' = ' . $this->_db->quote($categoryId));
         }
 
         $query->group($this->_db->quoteName('a.id'));
@@ -159,5 +172,32 @@ class AddressesModel extends ListModel
         ]);
         $formHelper = new FormHelper($form);
         return $formHelper->appendFieldOptions(parent::getItems())->getAll();
+    }
+
+    /**
+     * Method to get categories for the filter dropdown
+     *
+     * @return  array  An array of category objects
+     */
+    public function getCategories()
+    {
+        $db = $this->_db;
+        $query = $db->getQuery(true);
+
+        $query->select('c.id, c.title')
+            ->from($db->quoteName('#__categories', 'c'))
+            ->where($db->quoteName('c.extension') . ' = ' . $db->quote('com_addresses'))
+            ->where($db->quoteName('c.published') . ' = 1')
+            ->order($db->quoteName('c.title') . ' ASC');
+
+        $db->setQuery($query);
+
+        try {
+            $categories = $db->loadObjectList();
+        } catch (\RuntimeException $e) {
+            return [];
+        }
+
+        return $categories;
     }
 }

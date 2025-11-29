@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
   var clearSearchButton = document.getElementById("clear-search");
   clearSearchButton.addEventListener("click", function () {
     document.getElementById("filter-search").value = "";
+    var categoryFilter = document.getElementById("filter-catid");
+    if (categoryFilter) {
+      categoryFilter.value = "";
+    }
     document.getElementById("adminForm").submit();
   });
   var addNewButton = document.getElementById("add-new-item");

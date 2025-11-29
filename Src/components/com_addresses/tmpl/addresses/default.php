@@ -43,6 +43,16 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
                     type="button"><?= Text::_('JSEARCH_FILTER_CLEAR'); ?></button>
             </div>
         </div>
+        <div class="input-group mb-2 ms-2">
+            <select name="filter_catid" id="filter-catid" class="form-select" onchange="this.form.submit()">
+                <option value=""><?= Text::_('COM_ADDRESSES_FILTER_CATEGORY'); ?></option>
+                <?php foreach ($this->categories as $category): ?>
+                    <option value="<?= $category->id; ?>" <?= ($this->state->get('filter.catid') == $category->id) ? 'selected' : ''; ?>>
+                        <?= $this->escape($category->title); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
     </div>
     <div class="table-responsive">
         <table class="table table-striped">
@@ -62,6 +72,9 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
                     </th>
                     <th class="item-country">
                         <?= HTMLHelper::_('grid.sort', 'COM_ADDRESSES_HEADING_FRONTEND_LIST_ADDRESSES_COUNTRY', 'a.country', $listDirn, $listOrder); ?>
+                    </th>
+                    <th class="item-category">
+                        <?= Text::_('COM_ADDRESSES_HEADING_FRONTEND_LIST_ADDRESSES_CATEGORY'); ?>
                     </th>
                 </tr>
             </thead>
@@ -85,6 +98,9 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
                         </td>
                         <td class="item-country">
                             <?= $item->country; ?>
+                        </td>
+                        <td class="item-category">
+                            <?= $item->category ?? ''; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
