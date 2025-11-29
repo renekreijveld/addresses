@@ -38,6 +38,8 @@ class JsonapiView extends BaseApiView
         'city',
         'imptotal',
         'country',
+        'catid',
+        'category',
     ];
 
     /**
@@ -54,5 +56,7 @@ class JsonapiView extends BaseApiView
         'city',
         'imptotal',
         'country',
+        'catid',
+        'category',
     ];
 }
